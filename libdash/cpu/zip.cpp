@@ -36,11 +36,10 @@ void DASH_ZIP_flt_cpu(dash_cmplx_flt_type** input_1, dash_cmplx_flt_type** input
         (*output)[i].re = temp.re;
         (*output)[i].im = temp.im;
         break;
-      /*case ZIP_CMP_MULT:
+      case ZIP_CMP_MULT:
         (*output)[i*2] = (*input_1)[i*2] * (*input_2)[i*2] - (*input_1)[i*2+1] * (*input_2)[i*2+1];
         (*output)[i*2+1] = (*input_1)[i*2+1] * (*input_2)[i*2] + (*input_1)[i*2] * (*input_2)[i*2+1];
         break;
-      */
     }
   }
 }
