@@ -97,12 +97,13 @@ int main(void)
         }
     }
 
-    X1 = malloc(2 * len * sizeof(double));
-    X2 = malloc(2 * len * sizeof(double));
-    corr_freq = malloc(2 * len * sizeof(double));
+    // X1 = malloc(2 * len * sizeof(double));
+    // X2 = malloc(2 * len * sizeof(double));
+    // corr_freq = malloc(2 * len * sizeof(double));
    
     dash_cmplx_flt_type *fft_inp = (dash_cmplx_flt_type*) malloc(len * sizeof(dash_cmplx_flt_type));
-    dash_cmplx_flt_type *fft_out = (dash_cmplx_flt_type*) malloc(len * sizeof(dash_cmplx_flt_type));
+    dash_cmplx_flt_type *fft_out1 = (dash_cmplx_flt_type*) malloc(len * sizeof(dash_cmplx_flt_type));
+    dash_cmplx_flt_type *fft_out2 = (dash_cmplx_flt_type*) malloc(len * sizeof(dash_cmplx_flt_type));
 
     // FFT 1
     for (size_t i = 0; i < len; i++) {
@@ -111,12 +112,12 @@ int main(void)
     }
 
     // gsl_fft_wrapper(fft_inp, fft_out, len, true);
-    DASH_FFT_flt(fft_inp, fft_out, len, true);
+    DASH_FFT_flt(fft_inp, fft_out1, len, true);
 
-    for (size_t i = 0; i < len; i++) {
-      X1[2*i] = (double) fft_out[i].re;
-      X1[2*i+1] = (double) fft_out[i].im;
-    }
+    // for (size_t i = 0; i < len; i++) {
+    //   X1[2*i] = (double) fft_out[i].re;
+    //   X1[2*i+1] = (double) fft_out[i].im;
+    // }
 
     // FFT 2
     for (size_t i = 0; i < len; i++) {
@@ -125,36 +126,37 @@ int main(void)
     }
 
     // gsl_fft_wrapper(fft_inp, fft_out, len, true);
-    DASH_FFT_flt(fft_inp, fft_out, len, true);
+    DASH_FFT_flt(fft_inp, fft_out2, len, true);
 
-    for (size_t i = 0; i < len; i++) {
-      X2[2*i] = (double) fft_out[i].re;
-      X2[2*i+1] = (double) fft_out[i].im;
-    }
+    // for (size_t i = 0; i < len; i++) {
+    //   X2[2*i] = (double) fft_out[i].re;
+    //   X2[2*i+1] = (double) fft_out[i].im;
+    // }
     
     // Multiplication
     // for (i = 0; i < 2 * len; i += 2) {
     //     corr_freq[i] = (X1[i] * X2[i]) + (X1[i + 1] * X2[i + 1]);
     //     corr_freq[i + 1] = (X1[i + 1] * X2[i]) - (X1[i] * X2[i + 1]);
     //   }
-    DASH_ZIP_flt(X1,X2,corr_freq,len,ZIP_CMP_MULT);
+    DASH_ZIP_flt(fft_out1,fft_out2,fft_inp,len,ZIP_MULT);
 
     // IFFT
-    for (size_t i = 0; i < len; i++) {
-      fft_inp[i].re = (dash_re_flt_type) corr_freq[2*i];
-      fft_inp[i].im = (dash_re_flt_type) corr_freq[2*i+1];
-    }
+    // for (size_t i = 0; i < len; i++) {
+    //   fft_inp[i].re = (dash_re_flt_type) corr_freq[2*i];
+    //   fft_inp[i].im = (dash_re_flt_type) corr_freq[2*i+1];
+    // }
 
     // gsl_fft_wrapper(fft_inp, fft_out, len, false);
-    DASH_FFT_flt(fft_inp, fft_out, len, false);
+    DASH_FFT_flt(fft_inp, fft_out1, len, false);
 
     for (size_t i = 0; i < len; i++) {
-      corr[2*i] = (double) fft_out[i].re;
-      corr[2*i+1] = (double) fft_out[i].im;
+      corr[2*i] = (double) fft_out1[i].re;
+      corr[2*i+1] = (double) fft_out1[i].im;
     }
 
     free(fft_inp);
-    free(fft_out);
+    free(fft_out1);
+    free(fft_out2);
 
     for (i = 0; i < 2 * len; i += 2)
     {
@@ -177,9 +179,9 @@ int main(void)
     free(gen_wave);
     free(c);
     free(d);
-    free(X1);
-    free(X2);
-    free(corr_freq);
+    // free(X1);
+    // free(X2);
+    // free(corr_freq);
 
     return 0;
 }
