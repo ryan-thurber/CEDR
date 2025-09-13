@@ -10,8 +10,7 @@ typedef enum zip_op {
  ZIP_ADD = 0,
  ZIP_SUB = 1,
  ZIP_MULT = 2,
- ZIP_DIV = 3,
- ZIP_CMP_MULT = 4
+ ZIP_DIV = 3
 } zip_op_t;
 
 typedef struct dash_cmplx_int_type {
