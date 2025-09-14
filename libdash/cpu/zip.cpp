@@ -33,7 +33,7 @@ void DASH_ZIP_flt_cpu(dash_cmplx_flt_type** input_1, dash_cmplx_flt_type** input
       // Complex vector input 1 * Complex conjugate of input 2
       case ZIP_MULT_CONJ:
         temp.re = (*input_1)[i].re * (*input_2)[i].re + (*input_1)[i].im * (*input_2)[i].im;
-        temp.im = (*input_1)[i].im * (*input_2)[i].re - (*input_1)[i].re * (*input_2)[i].im ;
+        temp.im = (*input_1)[i].im * (*input_2)[i].re - (*input_1)[i].re * (*input_2)[i].im;
         (*output)[i].re = temp.re;
         (*output)[i].im = temp.im;
         break;
