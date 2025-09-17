@@ -162,11 +162,11 @@ int main(void) {
   bool forwardTrans = true;
 
   // gsl_fft_wrapper(g, g2, fast, forwardTrans);
-  DASH_FFT_flt(g, g2, fast, true);
+  DASH_FFT_flt(g, g2, fast, forwardTrans);
   
   for (i = 0; i < Nslow; i++) {
     // gsl_fft_wrapper((s0+i*Nfast), (fft_out_0+i*Nfast), fast, true);
-    DASH_FFT_flt(g, g2, fast, true);
+    DASH_FFT_flt((s0+i*Nfast), (fft_out_0+i*Nfast), fast, true);
     
     fftshift((fft_out_0+i*Nfast), Nfast);
     
@@ -177,7 +177,7 @@ int main(void) {
     DASH_ZIP_flt(fft_out_0,g2,fft_inp_1,Nfast,ZIP_MULT);
     
     // gsl_fft_wrapper(&(fft_inp_1[i*Nfast]), &(fft_out_1[i*Nfast]), fast, false);
-    DASH_FFT_flt(g, g2, fast, true);
+    DASH_FFT_flt(&(fft_inp_1[i*Nfast]), &(fft_out_1[i*Nfast]), fast, false);
   }
   for (i = 0; i < Nslow; i++) {
     for (j = 0; j < Nfast; j += 1) {
@@ -201,7 +201,7 @@ int main(void) {
       //   fft_inp_2[j].re = (S1+i*Nslow)[j].re * H[j].re - (S1+i*Nslow)[j].im * H[j].im;
       //   fft_inp_2[j].im = (S1+i*Nslow)[j].im * H[j].re + (S1+i*Nslow)[j].re * H[j].im;
       // }
-    DASH_ZIP_flt((S1+i*Nslow),(S1+i*Nslow),fft_inp_2,Nfast,ZIP_MULT);
+    DASH_ZIP_flt((S1+i*Nslow),H,fft_inp_2,Nfast,ZIP_MULT);
       
     // gsl_fft_wrapper((fft_inp_2+i*Nslow), (fft_out_2+i*Nslow), slow, false);
     DASH_FFT_flt((fft_inp_2+i*Nslow),(fft_out_2+i*Nslow),slow,false);
