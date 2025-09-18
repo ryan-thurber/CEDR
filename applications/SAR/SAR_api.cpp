@@ -174,7 +174,7 @@ int main(void) {
     //   fft_inp_1[j].re = (fft_out_0+i*Nfast)[j].re * g2[j].re - (fft_out_0+i*Nfast)[j].im * g2[j].im;
     //   fft_inp_1[j].im = (fft_out_0+i*Nfast)[j].im * g2[j].re + (fft_out_0+i*Nfast)[j].re * g2[j].im;
     // }
-    DASH_ZIP_flt(fft_out_0,g2,fft_inp_1,Nfast,ZIP_MULT);
+    DASH_ZIP_flt((fft_out_0+i*Nfast),g2,fft_inp_1,Nfast,ZIP_MULT);
     
     // gsl_fft_wrapper(&(fft_inp_1[i*Nfast]), &(fft_out_1[i*Nfast]), fast, false);
     DASH_FFT_flt(&(fft_inp_1[i*Nfast]), &(fft_out_1[i*Nfast]), fast, false);
