@@ -138,7 +138,10 @@ int main(void)
     //     corr_freq[i] = (X1[i] * X2[i]) + (X1[i + 1] * X2[i + 1]);
     //     corr_freq[i + 1] = (X1[i + 1] * X2[i]) - (X1[i] * X2[i + 1]);
     //   }
-    DASH_ZIP_flt(fft_out1,fft_out2,fft_inp,len,ZIP_MULT_CONJ);
+    for (size_t i = 0; i < len; i++) {
+            fft_out2[i].im = -1 *  fft_out2[i].im;
+        }
+    DASH_ZIP_flt(fft_out1,fft_out2,fft_inp,len,ZIP_MULT);
 
     // IFFT
     // for (size_t i = 0; i < len; i++) {

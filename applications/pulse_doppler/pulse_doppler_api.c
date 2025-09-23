@@ -97,7 +97,10 @@ void xcorr(double *x, double *y, size_t n_samp, double *corr) {
   //   corr_freq[i] = (X1[i] * X2[i]) + (X1[i + 1] * X2[i + 1]);
   //   corr_freq[i + 1] = (X1[i + 1] * X2[i]) - (X1[i] * X2[i + 1]);
   // }
-  DASH_ZIP_flt(X1,X2,corr_freq,len,ZIP_MULT_CONJ);
+  for (size_t i = 0; i < len; i++) {
+    X2[i].im = -1 *  X2[i].im;
+  }
+  DASH_ZIP_flt(X1,X2,corr_freq,len,ZIP_MULT);
   free(X1);
   free(X2);
 
