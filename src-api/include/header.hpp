@@ -54,8 +54,8 @@ static_assert(sizeof(resource_type_names) / sizeof(char *) == resource_type::NUM
 static const std::map<std::string, resource_type> resource_type_map = {{resource_type_names[(uint8_t) resource_type::cpu], resource_type::cpu},
                                                                        {resource_type_names[(uint8_t) resource_type::mmult], resource_type::mmult},
                                                                        {resource_type_names[(uint8_t) resource_type::gpu], resource_type::gpu},
-								       {resource_type_names[(uint8_t) resource_type::gpu], resource_type::zip},
-								       {resource_type_names[(uint8_t) resource_type::fft], resource_type::fft}};
+                                                                       {resource_type_names[(uint8_t) resource_type::fft], resource_type::fft},
+                                                                       {resource_type_names[(uint8_t) resource_type::zip], resource_type::zip}};
 
 struct cedr_barrier {
   pthread_cond_t* cond;
