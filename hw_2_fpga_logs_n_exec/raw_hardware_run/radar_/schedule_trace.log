@@ -1,5 +1,0 @@
-ready_queue_size: 1, ref_start_time: 68293391755521, ref_stop_time: 68293391817861, sheduling_overhead: 62340 ns
-ready_queue_size: 1, ref_start_time: 68293393042341, ref_stop_time: 68293393094961, sheduling_overhead: 52620 ns
-ready_queue_size: 1, ref_start_time: 68293393593441, ref_stop_time: 68293393645251, sheduling_overhead: 51810 ns
-ready_queue_size: 1, ref_start_time: 68293394009421, ref_stop_time: 68293394171631, sheduling_overhead: 162210 ns
-total_ready_tasks: 4, total_scheduling_overhead: 328980 ns
