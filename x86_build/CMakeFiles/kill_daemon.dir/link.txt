@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wl,--dynamic-list=/root/repository/team_ceadr_work/src-api/exported.txt "CMakeFiles/kill_daemon.dir/src-api/ipc.cpp.o" "CMakeFiles/kill_daemon.dir/src-api/kill_daemon.cpp.o" -o kill_daemon  -lpthread -ldl -lrt 

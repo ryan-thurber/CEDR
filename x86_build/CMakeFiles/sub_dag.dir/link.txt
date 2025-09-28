@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wl,--dynamic-list=/root/repository/team_ceadr_work/src-api/exported.txt "CMakeFiles/sub_dag.dir/src-api/ipc.cpp.o" "CMakeFiles/sub_dag.dir/src-api/sub_dag.cpp.o" -o sub_dag  -lpthread -ldl -lrt 
