@@ -401,6 +401,65 @@ int scheduleETF(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_queu
   return tasks_scheduled;
 }
 
+int scheduleEFT(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_queue, worker_thread *hardware_thread_handle, pthread_mutex_t *resource_mutex, uint32_t &free_resource_count) {
+
+  unsigned int tasks_scheduled = 0; // Number of tasks scheduled so far
+  int eft_resource = 0; // ID of the PE that will be assigned to the task
+  unsigned long long earliest_estimated_availtime = 0; // Estimated finish time initialization
+  bool task_allocated; // Task assigned to PE successfully or not
+
+ /* Get current time in nanosecond scale */
+  struct timespec curr_timespec {};
+  clock_gettime(CLOCK_MONOTONIC_RAW, &curr_timespec);
+  long long curr_time = curr_timespec.tv_nsec + curr_timespec.tv_sec * SEC2NANOSEC;
+
+  long long avail_time; // Current available time of the PEs
+  long long task_exec_time; // Estimated execution time of the task
+
+  unsigned int total_resources = cedr_config.getTotalResources(); // Total Number of PEs available
+
+  // For loop to iterate over all tasks in Ready queue
+  for (auto itr = ready_queue.begin(); itr != ready_queue.end();) {
+ earliest_estimated_availtime = ULLONG_MAX;
+    // For each task, iterate over all PEs to find the earliest finishing one
+    for (int i = total_resources - 1; i >= 0; i--) {
+ auto resourceType = hardware_thread_handle[i].thread_resource_type; // FFT, ZIP, GEMM, etc.
+ avail_time = hardware_thread_handle[i].thread_avail_time; // Based on estimated execution times of the tasks in the `todo_queue` of the PE
+ task_exec_time = cedr_config.getDashExecTime((*itr)->task_type, resourceType); // Estimated execution time of the task
+ auto finishTime = (curr_time >= avail_time) ? curr_time + task_exec_time : avail_time + task_exec_time; // estimated finish time of the task on the PE at i^th index
+ auto resourceIsSupported = ((*itr)->supported_resources[(uint8_t) resourceType]); // Check if the current PE support execution of this task
+ /* Check if the PE supports the task and if the estimated finish time is earlier than what is found so far */
+      if (resourceIsSupported && finishTime < earliest_estimated_availtime) {
+ earliest_estimated_availtime = finishTime;
+ eft_resource = i;
+ }
+ }
+
+    // Attempt to assign task on earliest finishing PE
+ task_allocated = attemptToAssignTaskToPE(
+ cedr_config, // Current configuration of the CEDR
+ (*itr), // Task that is being scheduled
+ &hardware_thread_handle[eft_resource], // PE that is mapped to the task based on the heuristic
+ &resource_mutex[eft_resource], // Mutex protection for the PE's todo queue
+ eft_resource // ID of the mapped PE
+ );
+
+    if (task_allocated) { // If task allocated successfully
+ tasks_scheduled++; // Increment the number of scheduled tasks
+ itr = ready_queue.erase(itr); // Remove the task from ready_queue
+ /* If queueing is disabled, decrement free resource count*/
+      if (!cedr_config.getEnableQueueing()) {
+ free_resource_count--;
+        if (free_resource_count == 0)
+          break;
+ }
+ } else { // If task is not allocated successfully
+ itr++; // Go to the next task in ready_queue
+ }
+ }
+  return tasks_scheduled;
+}
+
 
 void performScheduling(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_queue, worker_thread *hardware_thread_handle, pthread_mutex_t *resource_mutex,
                        uint32_t &free_resource_count) {
@@ -433,7 +492,9 @@ void performScheduling(ConfigManager &cedr_config, std::deque<task_nodes *> &rea
     tasks_scheduled += scheduleRT(cedr_config, ready_queue, hardware_thread_handle, resource_mutex, free_resource_count);
   }*/ else if (sched_policy == "ETF") {
     tasks_scheduled += scheduleETF(cedr_config, ready_queue, hardware_thread_handle, resource_mutex, free_resource_count);
-  } else {
+  } else if (sched_policy == "EFT") {
+    tasks_scheduled += scheduleEFT(cedr_config, ready_queue, hardware_thread_handle, resource_mutex, free_resource_count);
+  }else {
     LOG_FATAL << "Unknown scheduling policy selected! Exiting...";
     exit(1);
   }
