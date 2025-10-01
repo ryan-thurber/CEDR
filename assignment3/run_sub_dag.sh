@@ -1,15 +1,15 @@
 #!/bin/bash
 
 #### All possible schedulers, and max number of allowed resources ####
-declare -a SCHEDS=("SIMPLE" "MET" "ETF")
+declare -a SCHEDS=("SIMPLE" "MET" "ETF" "EFT")
 declare -a CPUS=3
-declare -a FFTS=0
+declare -a FFTS=2
 declare -a MMULTS=0
-declare -a ZIPS=0
+declare -a ZIPS=2
 declare -a GPUS=0
 ######################################################################
 
-APPS=("./radar_correlator_api-x86.so")
+APPS=("./radar_correlator_api-aarch64.so")
 INSTS=("5")
 
 declare -a PERIODS=("1734" "2313")

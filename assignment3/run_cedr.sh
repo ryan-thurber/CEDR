@@ -3,11 +3,11 @@
 # Leave a copy of this input configuration file into the generated trace file base directory to be used
 # later by makedataframe.
 #### All possible schedulers, and max number of allowed resources ####
-declare -a SCHEDS=("SIMPLE" "MET" "ETF")
+declare -a SCHEDS=("SIMPLE" "MET" "ETF" "EFT")
 CPUS=3
-FFTS=0
+FFTS=2
 MMULTS=0
-ZIPS=0
+ZIPS=2
 GPUS=0
 ######################################################################
 
