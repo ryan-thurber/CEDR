@@ -42,8 +42,8 @@ for w in {0..0};do
                   do # ! test -f $FILE ; do
                     #:
                     cedr=`ps aux | grep "cedr -c" | grep -v grep | tr -d '\n' | tr ' ' '\n'`
-                    ID=`echo $cedr | tr ' ' '\n' | head -n 2 | tail -n 1` # Un-comment this for GPU
-                    time=`echo $cedr | tr ' ' '\n' | head -n 3 | tail -n 1 | tr ':' '\n' | head -n 1`
+                    ID=`echo $cedr | head -n 1` # Un-comment this for GPU
+                    time=`echo $cedr | head -n 3 | tail -n 1`
                     if [[ "$ID" =~ ^[0-9]+$ ]]
                     then
                       cedrPid=$ID
