@@ -1,0 +1,5 @@
+app_id: 0, app_name: radar_correlator_api-aarch64, ref_arrival_time: 780215162656262, ref_start_time: 780215162672852, ref_end_time: 780215167105442, app_runtime: 4432590, app_lifetime: 4449180 
+app_id: 1, app_name: radar_correlator_api-aarch64, ref_arrival_time: 780215164975562, ref_start_time: 780215164983212, ref_end_time: 780215169520443, app_runtime: 4537231, app_lifetime: 4544881 
+app_id: 2, app_name: radar_correlator_api-aarch64, ref_arrival_time: 780215167293032, ref_start_time: 780215167300772, ref_end_time: 780215171043483, app_runtime: 3742711, app_lifetime: 3750451 
+app_id: 3, app_name: radar_correlator_api-aarch64, ref_arrival_time: 780215169607593, ref_start_time: 780215169621693, ref_end_time: 780215172043083, app_runtime: 2421390, app_lifetime: 2435490 
+app_id: 4, app_name: radar_correlator_api-aarch64, ref_arrival_time: 780215171922393, ref_start_time: 780215171927313, ref_end_time: 780215174304484, app_runtime: 2377171, app_lifetime: 2382091 

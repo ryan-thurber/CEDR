@@ -35,7 +35,7 @@ def resource_util(FILENAME):
         start_dict = {}
         stop_dict = {}
         exectime_dict = {}
-        corelist = [' cpu1', ' cpu2', ' cpu3']  # Edit here
+        corelist = [' cpu1', ' cpu2', ' cpu3', ' fft1', ' fft2', ' zip1', ' zip2']  # Edit here
         #print("Proc_schedule_keys : ", proc_schedules.keys())
         for core in corelist:
             if core in proc_schedules.keys():
@@ -57,6 +57,9 @@ def resource_util(FILENAME):
                 start_dict[str(core)] = min(start_dict[str(core)])
                 stop_dict[core] = max(stop_dict[core])
             exectime_dict[core] = sum(exectime_dict[core])
+        print(start_dict)
+        print(stop_dict)
+        print("")
         start_minimum = min(start_dict.values())
         stop_maximum = max(stop_dict.values())
 
@@ -178,11 +181,11 @@ if __name__ == '__main__':
 
     ############# Edit parameters here ####################
     CPUS=3
-    FFTS=0
+    FFTS=2
     MMULTS=0
-    ZIPS=0
+    ZIPS=2
     
-    SCHEDS=["SIMPLE", "MET", "ETF"]
+    SCHEDS=["SIMPLE", "MET", "ETF", "EFT"]
     
     if WORKLOAD == 'HIGH':
         # Use following INJ_RATES and PERIODS for High latency workload data

@@ -27,15 +27,15 @@ if __name__ == "__main__":
 
     ### Configuration specification ###
     CPUS = 3
-    FFTS = 0
+    FFTS = 2
     MMULTS = 0
-    ZIPS = 0
+    ZIPS = 2
     GPUS = 0
     WORKLOAD = 'High'
     TRIALS = 2
-    schedlist = {'SIMPLE':1, 'MET':2, 'ETF':3}
-    schedmarkerlist = {'SIMPLE':'o', 'MET':'o', 'ETF':'o'}
-    schednamelist = ['RR', 'MET', 'ETF']
+    schedlist = {'SIMPLE':1, 'MET':2, 'ETF':3, 'EFT':4}
+    schedmarkerlist = {'SIMPLE':'o', 'MET':'o', 'ETF':'o', 'EFT':'o'}
+    schednamelist = ['RR', 'MET', 'ETF','EFT']
     #colorlist = {' Core 1':'green', ' Core 2': 'blue', ' Core 3': 'red', ' FFT 1':'black', ' MMULT 1': 'orange','ZIP 1: 'purple'}
     viridis = cm.get_cmap('tab10',10)
     #print(viridis(1))

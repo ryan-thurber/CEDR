@@ -1,0 +1,21 @@
+ready_queue_size: 1, ref_start_time: 778653730065476, ref_stop_time: 778653730080206, sheduling_overhead: 14730 ns
+ready_queue_size: 1, ref_start_time: 778653730771076, ref_stop_time: 778653730776476, sheduling_overhead: 5400 ns
+ready_queue_size: 1, ref_start_time: 778653731740707, ref_stop_time: 778653731747277, sheduling_overhead: 6570 ns
+ready_queue_size: 1, ref_start_time: 778653731947887, ref_stop_time: 778653731952657, sheduling_overhead: 4770 ns
+ready_queue_size: 1, ref_start_time: 778653732200307, ref_stop_time: 778653732205527, sheduling_overhead: 5220 ns
+ready_queue_size: 1, ref_start_time: 778653732430227, ref_stop_time: 778653732435207, sheduling_overhead: 4980 ns
+ready_queue_size: 1, ref_start_time: 778653732806757, ref_stop_time: 778653732812367, sheduling_overhead: 5610 ns
+ready_queue_size: 1, ref_start_time: 778653732995397, ref_stop_time: 778653733000107, sheduling_overhead: 4710 ns
+ready_queue_size: 1, ref_start_time: 778653733222977, ref_stop_time: 778653733229487, sheduling_overhead: 6510 ns
+ready_queue_size: 1, ref_start_time: 778653734087877, ref_stop_time: 778653734093157, sheduling_overhead: 5280 ns
+ready_queue_size: 1, ref_start_time: 778653734628597, ref_stop_time: 778653734634027, sheduling_overhead: 5430 ns
+ready_queue_size: 1, ref_start_time: 778653734810457, ref_stop_time: 778653734815347, sheduling_overhead: 4890 ns
+ready_queue_size: 1, ref_start_time: 778653735019317, ref_stop_time: 778653735025017, sheduling_overhead: 5700 ns
+ready_queue_size: 1, ref_start_time: 778653735803757, ref_stop_time: 778653735809667, sheduling_overhead: 5910 ns
+ready_queue_size: 1, ref_start_time: 778653736138437, ref_stop_time: 778653736143867, sheduling_overhead: 5430 ns
+ready_queue_size: 1, ref_start_time: 778653736325187, ref_stop_time: 778653736329477, sheduling_overhead: 4290 ns
+ready_queue_size: 1, ref_start_time: 778653736548627, ref_stop_time: 778653736554177, sheduling_overhead: 5550 ns
+ready_queue_size: 1, ref_start_time: 778653737633278, ref_stop_time: 778653737638978, sheduling_overhead: 5700 ns
+ready_queue_size: 1, ref_start_time: 778653737818108, ref_stop_time: 778653737822548, sheduling_overhead: 4440 ns
+ready_queue_size: 1, ref_start_time: 778653738030898, ref_stop_time: 778653738035878, sheduling_overhead: 4980 ns
+total_ready_tasks: 20, total_scheduling_overhead: 116100 ns
