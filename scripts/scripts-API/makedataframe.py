@@ -199,7 +199,7 @@ if __name__ == '__main__':
 
     INJ_COUNT=int(args.injectionRateCount)
     TRIALS=int(args.trial)
-    corelist = [' cpu1', ' cpu2', ' cpu3']  # Edit here
+    corelist = [' cpu1', ' cpu2', ' cpu3', ' fft1', ' fft2', ' zip1', ' zip2']  # Edit here
 
     #######################################################
 
@@ -211,9 +211,9 @@ if __name__ == '__main__':
         header_list = header_list + ['Avg. execution time / app.(ns)', 'Avg. cumulative execution time / app. (ns)', 'Avg. Scheduling overhead / app.(ns)'] + corelist
         writer.writerow(header_list)
         
-        for z in range (ZIPS,ZIPS+1): 
+        for z in range (0,ZIPS): 
             for m in range (MMULTS,MMULTS+1):  # Edit the for loop for different types of resources
-                for f in range (FFTS,FFTS+1):
+                for f in range (0,FFTS):
                     for c in range (0,CPUS):
                         for sched in SCHEDS:
                             for i in range(INJ_COUNT):

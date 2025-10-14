@@ -14,11 +14,11 @@ if __name__=="__main__":
     warnings.warn("UPDATE DASH API COSTS!", RuntimeWarning, stacklevel=2, source=None)
     print("Starting creating daemon_config_files")
 
-    SCHEDS = ["SIMPLE", "ETF", "MET"]
+    SCHEDS = ["SIMPLE", "ETF", "MET","EFT"]
     CPUS = 3
-    FFTS = 0
+    FFTS = 2
     MMULTS = 0
-    ZIPS = 0
+    ZIPS = 2
     GPUS = 0
 
     original_stdout = sys.stdout
