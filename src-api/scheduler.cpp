@@ -131,7 +131,7 @@ int scheduleFSFS(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_que
   while (!ready_queue.empty()){
     task_to_schedule = ready_queue.begin();
     // Find shortest app start time
-    for (auto itr = ready_queue.begin(); itr != ready_queue.end();) { 
+    for (auto itr = ready_queue.begin(); itr != ready_queue.end(); itr++) { 
       if ((*itr)->app_pnt->start_time > (*task_to_schedule)->app_pnt->start_time){
         task_to_schedule = itr;
       }
