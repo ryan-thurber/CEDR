@@ -121,6 +121,40 @@ int scheduleSimple(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_q
   return tasks_scheduled;
 }
 
+int scheduleFSFS(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_queue, worker_thread *hardware_thread_handle, pthread_mutex_t *resource_mutex,
+                   uint32_t &free_resource_count) {
+  // Note: static initialization only happens on the first call, so this isn't actually overwritten with each call
+  static unsigned int rand_resource = 0;
+  unsigned int tasks_scheduled = 0;
+  unsigned int total_resources = cedr_config.getTotalResources();
+  while (!ready_queue.empty()){
+    std::deque<task_nodes *>::iterator task_to_schedule = ready_queue.begin();
+    for (auto itr = ready_queue.begin(); itr != ready_queue.end();) { 
+      // Find shortest app start time
+      if ((*itr)->app_pnt->start_time > (*task_to_schedule)->app_pnt->start_time){
+        task_to_schedule = itr;
+      }
+    }
+    bool task_allocated;
+    for (int i = 0; i < total_resources; i++) { 
+      // Just keep trying to assign this task until one works
+      task_allocated = attemptToAssignTaskToPE(cedr_config, (*task_to_schedule), &hardware_thread_handle[rand_resource], &resource_mutex[rand_resource], rand_resource);
+      rand_resource = ++rand_resource % cedr_config.getTotalResources();
+      if (task_allocated) {
+        tasks_scheduled++;
+        task_to_schedule = ready_queue.erase(task_to_schedule);
+        if (!cedr_config.getEnableQueueing()) {
+          free_resource_count--;
+        }
+        break;
+      }
+      if (!cedr_config.getEnableQueueing() && free_resource_count == 0) {
+        break;
+      }
+    }
+  }
+  return tasks_scheduled;
+}
 
 int scheduleRandom(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_queue, worker_thread *hardware_thread_handle, pthread_mutex_t *resource_mutex,
                    uint32_t &free_resource_count) {
@@ -494,6 +528,8 @@ void performScheduling(ConfigManager &cedr_config, std::deque<task_nodes *> &rea
     tasks_scheduled += scheduleETF(cedr_config, ready_queue, hardware_thread_handle, resource_mutex, free_resource_count);
   } else if (sched_policy == "EFT") {
     tasks_scheduled += scheduleEFT(cedr_config, ready_queue, hardware_thread_handle, resource_mutex, free_resource_count);
+  } else if (sched_policy == "FSFS") {
+    tasks_scheduled += scheduleFSFS(cedr_config, ready_queue, hardware_thread_handle, resource_mutex, free_resource_count);
   }else {
     LOG_FATAL << "Unknown scheduling policy selected! Exiting...";
     exit(1);
