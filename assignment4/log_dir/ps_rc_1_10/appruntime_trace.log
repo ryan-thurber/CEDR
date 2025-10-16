@@ -1,0 +1,11 @@
+app_id: 8, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383255910098, ref_start_time: 2062383261750348, ref_end_time: 2062383280720912, app_runtime: 18970564, app_lifetime: 24810814 
+app_id: 2, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383252747947, ref_start_time: 2062383252996737, ref_end_time: 2062383283232032, app_runtime: 30235295, app_lifetime: 30484085 
+app_id: 3, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383252747947, ref_start_time: 2062383253215527, ref_end_time: 2062383285354982, app_runtime: 32139455, app_lifetime: 32607035 
+app_id: 1, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383252747947, ref_start_time: 2062383252818417, ref_end_time: 2062383287006003, app_runtime: 34187586, app_lifetime: 34258056 
+app_id: 5, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383252747947, ref_start_time: 2062383255648677, ref_end_time: 2062383287935763, app_runtime: 32287086, app_lifetime: 35187816 
+app_id: 4, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383252747947, ref_start_time: 2062383254010137, ref_end_time: 2062383288037553, app_runtime: 34027416, app_lifetime: 35289606 
+app_id: 9, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383255910098, ref_start_time: 2062383262097599, ref_end_time: 2062383288522563, app_runtime: 26424964, app_lifetime: 32612465 
+app_id: 7, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383255910098, ref_start_time: 2062383256149498, ref_end_time: 2062383289232303, app_runtime: 33082805, app_lifetime: 33322205 
+app_id: 6, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383255910098, ref_start_time: 2062383255973188, ref_end_time: 2062383290088713, app_runtime: 34115525, app_lifetime: 34178615 
+app_id: 10, app_name: radar_correlator_api-aarch64, ref_arrival_time: 2062383255910098, ref_start_time: 2062383268210100, ref_end_time: 2062383290506613, app_runtime: 22296513, app_lifetime: 34596515 
+app_id: 0, app_name: pulse_doppler_api-aarch64, ref_arrival_time: 2062383252241787, ref_start_time: 2062383252357287, ref_end_time: 2062383691498978, app_runtime: 439141691, app_lifetime: 439257191 

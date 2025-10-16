@@ -1,0 +1,6 @@
+app_id: 2, app_name: pulse_doppler_api-aarch64, ref_arrival_time: 2062499483444882, ref_start_time: 2062499483501582, ref_end_time: 2062500747090506, app_runtime: 1263588924, app_lifetime: 1263645624 
+app_id: 3, app_name: pulse_doppler_api-aarch64, ref_arrival_time: 2062499493587944, ref_start_time: 2062499493648394, ref_end_time: 2062500790691313, app_runtime: 1297042919, app_lifetime: 1297103369 
+app_id: 1, app_name: pulse_doppler_api-aarch64, ref_arrival_time: 2062499473328161, ref_start_time: 2062499473389991, ref_end_time: 2062500812058966, app_runtime: 1338668975, app_lifetime: 1338730805 
+app_id: 4, app_name: pulse_doppler_api-aarch64, ref_arrival_time: 2062499503495446, ref_start_time: 2062499503625496, ref_end_time: 2062500857805704, app_runtime: 1354180208, app_lifetime: 1354310258 
+app_id: 5, app_name: pulse_doppler_api-aarch64, ref_arrival_time: 2062499513660557, ref_start_time: 2062499513718937, ref_end_time: 2062500912919852, app_runtime: 1399200915, app_lifetime: 1399259295 
+app_id: 0, app_name: SAR_api-aarch64, ref_arrival_time: 2062499463338429, ref_start_time: 2062499463405119, ref_end_time: 2062502110919525, app_runtime: 2647514406, app_lifetime: 2647581096 
