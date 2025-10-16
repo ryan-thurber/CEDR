@@ -128,6 +128,8 @@ int scheduleFSFS(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_que
   unsigned int tasks_scheduled = 0;
   unsigned int total_resources = cedr_config.getTotalResources();
   std::deque<task_nodes *>::iterator task_to_schedule;
+  // Until the ready queue is empty, find the task with the smallest start time
+  // and schedule it in the round robin
   while (!ready_queue.empty()){
     task_to_schedule = ready_queue.begin();
     // Find shortest app start time
@@ -136,6 +138,7 @@ int scheduleFSFS(ConfigManager &cedr_config, std::deque<task_nodes *> &ready_que
         task_to_schedule = itr;
       }
     }
+    //Attempt to schedule to PE in round robin fashion
     bool task_allocated;
     for (int i = 0; i < total_resources; i++) { 
       // Just keep trying to assign this task until one works
