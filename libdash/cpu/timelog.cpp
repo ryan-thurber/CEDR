@@ -10,8 +10,9 @@ extern "C" {
 extern void enqueue_kernel(const char* kernel_name, const char* precision_name, unsigned int n_vargs, ...);
 #endif
 
-void DASH_TIMELOG_cpu(const char* accel_name, const char* filename){
-
+void DASH_TIMELOG_cpu(timelog* tlog){
+    *(tlog->time) = std::chrono::system_clock::now();
+    *(tlog->threadID) = std::this_thread::get_id();
 }
 
 #if defined(__cplusplus)

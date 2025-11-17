@@ -1,4 +1,6 @@
 #pragma once
+#include <chrono>
+#include <thread>
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,7 +34,11 @@ typedef struct cedr_barrier {
   uint32_t* completion_ctr;
 } cedr_barrier_t;
 
-
+// Struct to contain a log for attacker: when and where it executes
+typedef struct timelog {
+  std::chrono::time_point<std::chrono::system_clock>* time;
+  std::thread::id* threadID;
+} timelog;
 
 #ifdef __cplusplus
 } // Close 'extern "C"'
