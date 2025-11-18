@@ -45,7 +45,7 @@ def show_gantt_chart(proc_schedules):
     for idx, proc in enumerate(processors):
         for job in proc_schedules[proc]:
             progressbar_counter = progressbar_counter + 1
-            rect_containers.append([ax.barh((idx*0.5)+0.5, (job.end - job.start)/10**6, left=job.start/10**6, height=0.3, align='center', edgecolor=color_choices[job.job % 5], color=color_choices[job.job % 5], alpha=0.95), job.id_string])
+            rect_containers.append([ax.barh((idx*0.5)+0.5, (job.end - job.start)/10**6, left=job.start/10**6, height=0.3, align='center', edgecolor=color_choices[job.task % 5], color=color_choices[job.task % 5], alpha=0.95), job.id_string])
             #ax.text(0.5 * (job.start + job.end - len(str(job.task))-0.25), (idx*0.5)+0.5 - 0.03125, job.task+1, color=color_choices[job.job % 5], fontweight='bold', fontsize=18, alpha=0.75)
             if progressbar_counter >= progressbar:
                 percantage_counter+=progressbar_counter
@@ -77,15 +77,15 @@ def show_gantt_chart(proc_schedules):
     #ax.set_xlim(xmax = 5)      # Modify to set the maximum x limit of plotted chart
     ax.grid(color = 'g', linestyle = ':', alpha=0.5)
     legend_elements = [Patch(facecolor=color_choices[0], edgecolor=color_choices[0],
-                         label='APP_ID \n(0+5n)'),
+                         label='TASK_ID \n(0+5n)'),
                        Patch(facecolor=color_choices[1], edgecolor=color_choices[1],
-                         label='APP_ID \n(1+5n)'),
+                         label='TASK_ID \n(1+5n)'),
                        Patch(facecolor=color_choices[2], edgecolor=color_choices[2],
-                         label='APP_ID \n(2+5n)'),
+                         label='TASK_ID \n(2+5n)'),
                        Patch(facecolor=color_choices[3], edgecolor=color_choices[3],
-                         label='APP_ID \n(3+5n)'),
+                         label='TASK_ID \n(3+5n)'),
                        Patch(facecolor=color_choices[4], edgecolor=color_choices[4],
-                         label='APP_ID \n(4+5n)')]
+                         label='TASK_ID \n(4+5n)')]
 
     ax.legend(handles=legend_elements, loc=9, ncol=5,fontsize=16)
     ax.tick_params(axis="x", labelsize=25)
