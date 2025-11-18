@@ -18,7 +18,8 @@ extern "C" {
 #define CONV_2D_MIN -32768
 #define CONV_2D_MAX 32767
 
-void DASH_TIMELOG(timelog* tlog);
+void DASH_TIMELOG_flt(timelog* tlog);
+void DASH_TIMELOG_flt_nb(timelog* tlog, cedr_barrier_t* kernel_barrier);
 
 void DASH_ZIP_flt(dash_cmplx_flt_type* input_1, dash_cmplx_flt_type* input_2, dash_cmplx_flt_type* output, size_t size, zip_op_t op);
 void DASH_ZIP_flt_nb(dash_cmplx_flt_type** input_1, dash_cmplx_flt_type** input_2, dash_cmplx_flt_type** output, size_t* size, zip_op_t* op, cedr_barrier_t* kernel_barrier);
