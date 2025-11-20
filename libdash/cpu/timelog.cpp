@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <pthread.h>
 
+#define SEC2NANOSEC 1000000000
+
 #if defined(__cplusplus)
 extern "C" {
 #endif
@@ -12,8 +14,9 @@ extern void enqueue_kernel(const char* kernel_name, const char* precision_name, 
 #endif
 
 void DASH_TIMELOG_flt_cpu(timelog* tlog){
-    auto temp = std::chrono::system_clock::now();
-    tlog->time = &temp;
+    struct timespec real_current_time {};
+    clock_gettime(CLOCK_MONOTONIC_RAW, &real_current_time);
+    tlog->time = (real_current_time.tv_sec * SEC2NANOSEC + real_current_time.tv_nsec);
     tlog->threadID = (unsigned long)pthread_self();
 }
 
