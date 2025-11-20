@@ -28,7 +28,7 @@ non-api: $(APP_NAME)_non_api.cpp
 
 api: $(APP_NAME)_api.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -shared -fPIC $(APP_NAME)_api.cpp -o $(APP_NAME)_api-$(ARCH).so
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(LIBS) $(APP_NAME)_api.cpp -l:libdash.a -lm -o $(APP_NAME)_api-$(ARCH).out
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -g $(LIBS) $(APP_NAME)_api.cpp -l:libdash.a -lm -o $(APP_NAME)_api-$(ARCH).out
 
 clean:
 	-rm $(APP_NAME)-*.so

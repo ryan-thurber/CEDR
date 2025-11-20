@@ -16,7 +16,7 @@ extern void enqueue_kernel(const char* kernel_name, const char* precision_name, 
 void DASH_TIMELOG_flt_cpu(timelog* tlog){
     struct timespec real_current_time {};
     clock_gettime(CLOCK_MONOTONIC_RAW, &real_current_time);
-    tlog->time = (real_current_time.tv_sec * SEC2NANOSEC + real_current_time.tv_nsec);
+    tlog->run_time = (real_current_time.tv_sec * SEC2NANOSEC + real_current_time.tv_nsec);
     tlog->threadID = (unsigned long)pthread_self();
 }
 

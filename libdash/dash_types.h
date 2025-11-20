@@ -36,7 +36,9 @@ typedef struct cedr_barrier {
 
 // Struct to contain a log for attacker: when and where it executes
 typedef struct timelog {
-  unsigned long time;
+  unsigned long queue_time;
+  unsigned long run_time;
+  unsigned long return_time;
   unsigned long threadID;
 } timelog;
 
