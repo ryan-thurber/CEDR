@@ -18,6 +18,23 @@ void DASH_TIMELOG_flt_cpu(timelog* tlog){
     clock_gettime(CLOCK_MONOTONIC_RAW, &real_current_time);
     tlog->run_time = (real_current_time.tv_sec * SEC2NANOSEC + real_current_time.tv_nsec);
     tlog->threadID = (unsigned long)pthread_self();
+    tlog->accelerator = timelog_accel::CPU;
+}
+
+void DASH_TIMELOG_flt_fft(timelog* tlog){
+    struct timespec real_current_time {};
+    clock_gettime(CLOCK_MONOTONIC_RAW, &real_current_time);
+    tlog->run_time = (real_current_time.tv_sec * SEC2NANOSEC + real_current_time.tv_nsec);
+    tlog->threadID = (unsigned long)pthread_self();
+    tlog->accelerator = timelog_accel::FFT;
+}
+
+void DASH_TIMELOG_flt_zip(timelog* tlog){
+    struct timespec real_current_time {};
+    clock_gettime(CLOCK_MONOTONIC_RAW, &real_current_time);
+    tlog->run_time = (real_current_time.tv_sec * SEC2NANOSEC + real_current_time.tv_nsec);
+    tlog->threadID = (unsigned long)pthread_self();
+    tlog->accelerator = timelog_accel::ZIP;
 }
 
 void DASH_TIMELOG_flt_nb(timelog* tlog, cedr_barrier_t* kernel_barrier) {

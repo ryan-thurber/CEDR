@@ -34,11 +34,18 @@ typedef struct cedr_barrier {
   uint32_t* completion_ctr;
 } cedr_barrier_t;
 
+typedef enum timelog_accel {
+ CPU = 0,
+ FFT = 1,
+ ZIP = 2,
+} timelog_accel;
+
 // Struct to contain a log for attacker: when and where it executes
 typedef struct timelog {
   unsigned long queue_time;
   unsigned long run_time;
   unsigned long return_time;
+  timelog_accel accelerator;
   unsigned long threadID;
 } timelog;
 
